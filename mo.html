@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CURDS - Neon Stock Theme</title>
+    <!-- مكتبة الأيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- هنا تم تعديل اسم ملف الـ CSS إلى mo.css -->
+    <link rel="stylesheet" href="mo.css">
+</head>
+<body>
+
+    <div class="crud-container">
+        <!-- الرأس -->
+        <div class="head">
+            <h1><i class="fa-solid fa-sparkles"></i> CURDS <i class="fa-solid fa-sparkles"></i></h1>
+            <p>PRODUCT MANAGEMENT SYSTEM</p>
+        </div>
+
+        <!-- منطقة الإدخال والبورصة -->
+        <div class="inputs-grid">
+            
+            <!-- الجزء الأيسر: حقول الإدخال -->
+            <div class="form-left">
+                <div class="input-group full-width">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                    <input type="text" id="title" placeholder="Title">
+                </div>
+
+                <div class="price-row">
+                    <div class="input-group">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <input onkeyup="getTotal()" type="number" id="price" placeholder="Price">
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-percent"></i>
+                        <input onkeyup="getTotal()" type="number" id="taxes" placeholder="Taxes">
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        <input onkeyup="getTotal()" type="number" id="ads" placeholder="Ads">
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-tags"></i>
+                        <input onkeyup="getTotal()" type="number" id="discount" placeholder="Discount">
+                    </div>
+                </div>
+
+                <div class="input-group full-width">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <input type="number" id="count" placeholder="Count">
+                </div>
+
+                <div class="input-group full-width">
+                    <i class="fa-regular fa-folder"></i>
+                    <input type="text" id="category" placeholder="Category">
+                </div>
+            </div>
+
+            <!-- الجزء الأيمن: شاشة البورصة / الإجمالي -->
+            <div class="stock-total-card">
+                <div class="stock-header">
+                    <i class="fa-solid fa-chart-line"></i> <span>Total</span>
+                </div>
+                <!-- رسم بياني وهمي (SVG) ليعطي شكل البورصة -->
+                <svg class="stock-chart" viewBox="0 0 200 60" preserveAspectRatio="none">
+                    <polyline fill="none" stroke="#10b981" stroke-width="2" points="0,50 20,40 40,45 60,25 80,35 100,10 120,30 140,5 160,20 180,5 200,15" />
+                </svg>
+                <div class="stock-data">
+                    <h2 id="total-value">Total Value = $0.00</h2>
+                    <div class="stock-stats">
+                        <small>USD, EUR, GBP<br>performance<br>Market Index View</small>
+                        <span class="trend-up">▲ +2.3%<br><span class="trend-down">▼ -1.1%</span></span>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- نهاية منطقة الإدخال -->
+
+        <button id="submit" onclick="createData()"><i class="fa-solid fa-plus"></i> CREATE</button>
+
+        <!-- منطقة البحث -->
+        <div class="search-block">
+            <div class="input-group full-width search-input">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search" placeholder="Search..." onkeyup="searchData(this.value)">
+            </div>
+            <div class="search-btns">
+                <button id="searchCategory" class="btn-purple" onclick="getSearchMood(this.id)"><i class="fa-solid fa-magnifying-glass"></i> SEARCH BY CATEGORY</button>
+                <button id="searchTitle" class="btn-blue" onclick="getSearchMood(this.id)"><i class="fa-solid fa-magnifying-glass"></i> SEARCH BY ITEM</button>
+            </div>
+        </div>
+
+        <div id="deleteAllBlock"></div>
+
+        <!-- الجدول -->
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th><i class="fa-solid fa-id-badge"></i> ID</th>
+                        <th><i class="fa-solid fa-t"></i> TITLE</th>
+                        <th><i class="fa-solid fa-percent"></i> TAXES</th>
+                        <th><i class="fa-solid fa-dollar-sign"></i> PRICE</th>
+                        <th><i class="fa-solid fa-bullhorn"></i> ADS</th>
+                        <th><i class="fa-solid fa-tags"></i> DISCOUNT</th>
+                        <th><i class="fa-solid fa-chart-line"></i> TOTAL</th>
+                        <th><i class="fa-regular fa-folder"></i> CATEGORY</th>
+                        <th><i class="fa-solid fa-pen"></i> UPDATE</th>
+                        <th><i class="fa-solid fa-trash"></i> DELETE</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <!-- سيتم إضافة البيانات هنا بواسطة الجافاسكربت -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- هنا تم تعديل اسم ملف الجافاسكربت إلى mo.js -->
+    <script src="mo.js"></script>
+</body>
+</html>
